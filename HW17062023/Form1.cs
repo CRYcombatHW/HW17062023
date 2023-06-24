@@ -33,7 +33,6 @@ namespace HW17062023
 					 MessageBoxIcon.Question
 				) == DialogResult.Yes
 			) {
-				label1.Text += "yes";
 				if (
 					MessageBox.Show(
 						 $"Nice! play again?",
@@ -42,7 +41,8 @@ namespace HW17062023
 						 MessageBoxIcon.Question
 					) == DialogResult.Yes
 				) {
-					label1.Text += "yes";
+					guesses.Clear();
+					UplateTrysLabel();
 				} else Close();
 			}
 
@@ -51,7 +51,6 @@ namespace HW17062023
 
 		private void buttonReset_Click(object sender, EventArgs e) {
 			guesses.Clear();
-
 			UplateTrysLabel();
 		}
 	}
