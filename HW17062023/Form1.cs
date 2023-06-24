@@ -12,9 +12,17 @@ namespace HW17062023
 			random = new Random();
 
 			InitializeComponent();
+			UplateTrysLabel();
 		}
 
 		private void UplateTrysLabel() => tryLabel.Text = guesses.Count.ToString();
+		private bool ShowYesNoMessage(string message, string title = "") => 
+			MessageBox.Show(
+				message,
+				title,
+				MessageBoxButtons.YesNo,
+				MessageBoxIcon.Question
+			) == DialogResult.Yes;
 
 		private void buttonGuess_Click(object sender, EventArgs e) {
 			int newGuess;
@@ -25,22 +33,8 @@ namespace HW17062023
 			guesses.Add(newGuess);
 
 
-			if (
-				MessageBox.Show(
-					 $"Is {guesses.Last()} your number",
-					 "Guess",
-					 MessageBoxButtons.YesNo,
-					 MessageBoxIcon.Question
-				) == DialogResult.Yes
-			) {
-				if (
-					MessageBox.Show(
-						 $"Nice! play again?",
-						 "Guess",
-						 MessageBoxButtons.YesNo,
-						 MessageBoxIcon.Question
-					) == DialogResult.Yes
-				) {
+			if (ShowYesNoMessage($"Is {guesses.Last()} your number", "Guess")) {
+				if (ShowYesNoMessage($"Nice! play again?", "Q")) {
 					guesses.Clear();
 					UplateTrysLabel();
 				} else Close();
